@@ -1,0 +1,34 @@
+﻿@model IdentityData.Entities.TaskEntity
+<h4>Title:  @(Model.Title)</h4>
+<h4>Description: @(Model.Description)</h4>
+<h4>StartDate: @(Model.StartDate.ToString("D"))</h4>
+<h4>EndDate: @(Model.EndDate.ToString("D"))</h4>
+<h4>MaxBall: @(Model.MaxBall)</h4>
+<h4>MaxBall: @(Model.CreatedDate.ToString("D"))</h4>
+
+<br/>
+
+
+<h2>Comments </h2>
+
+@{
+    foreach (var comment in Model.TaskComments)
+    {
+        <div class="card" style="width: 18rem;">
+            <img class="card-img-top" src="@comment.User.PhotoUrl" alt="UserPhoto">
+            <div class="card-body">
+                <h5 class="card-title">@comment.User.UserName</h5>
+                <p class="card-text">@comment.Message   @comment.Created.ToString("t")</p>
+            </div>
+        </div>
+    }
+}
+
+<form class="row g-3" style="width: 400px" asp-controller="Task" asp-action="AddComment" asp-route-taskId="@Model.Id" method="post">
+    <div>
+        <input  name="Comment" class="form-control"  type="text" placeholder="Comment"/>
+    </div> 
+    <button class="form-control"  type="submit" >Add Comment</button>
+</form>
+
+

@@ -1,0 +1,52 @@
+﻿@using IdentityData.AppDbContext
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@using Microsoft.EntityFrameworkCore
+@model IdentityData.Entities.User
+@inject Context Context 
+
+<h1>FirstName: @Model.FirstName</h1>
+<h1>LastName: @Model.LastName</h1>
+<h1>UserName: @Model.UserName</h1>
+
+<a class="btn btn-primary" asp-action="LogOut">LogOut</a>
+<table class="table">
+    <thead>
+    <tr>
+        <th scope="col">#</th>
+        <th scope="col">Request</th>
+        <th scope="col">Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    @{
+        var joinRequests = await Context.SendRequestToJoins
+            .Where(r => r.ToUserId == Model.Id)
+            .Include(r => r.Science)
+            .Include(r => r.FromWhom)
+            .Where(r => r.IsJoined == false)
+            .ToListAsync();
+
+        for (var i = 0; i < joinRequests.Count; i++)
+        {
+            var joinRequest = joinRequests[i];
+
+            <tr>
+                <th scope="row">@(i + 1)</th>
+                <td><strong>@joinRequest.FromWhom.UserName</strong> requested to join <strong>@joinRequest.Science.Name</strong></td>
+                <td>
+                    <a class="btn btn-primary" 
+                       asp-controller="Science" 
+                       asp-action="JoinScience"
+                       asp-route-isJoin="true"
+                       asp-route-joinRequestId="@joinRequest.Id">Join</a>
+           <a class="btn btn-primary" 
+                       asp-controller="Science" 
+                       asp-action="JoinScience"
+                       asp-route-isJoin="false"
+                       asp-route-joinRequestId="@joinRequest.Id">Reject</a>
+                </td>
+            </tr>
+        }
+    }
+    </tbody>
+</table>

@@ -1,0 +1,27 @@
+﻿@model Full_Identity.DTOs.CreateTaskDto
+
+<h1>Add Task </h1>
+<form class="row g-3" style="width: 400px" asp-controller="Task" asp-action="AddTask" asp-route-scienceId="@ViewBag.ScienceId" method="post">
+    <div>
+        <input  name="Title" class="form-control" asp-for="Title" type="text" placeholder="Title"/>
+        <span asp-validation-for="Title"></span>
+    </div>
+    <div>
+        <input  name="Description" class="form-control" asp-for="Description" type="text" placeholder="Description"/>
+        <span asp-validation-for="Description"></span>
+    </div>
+    <div>
+        <input  name="StartDate" class="form-control" asp-for="StartDate" type="date" placeholder="StartDate"/>
+        <span asp-validation-for="Description"></span>
+    </div>
+    <div>
+        <input  name="EndDate" class="form-control" asp-for="EndDate" type="date" placeholder="EndDate"/>
+        <span asp-validation-for="EndDate"></span>
+    </div>   
+
+    <div>
+        <input  name="MaxBall" class="form-control" asp-for="MaxBall" type="text" placeholder="MaxBall"/>
+        <span asp-validation-for="MaxBall"></span>
+    </div>
+    <button class="form-control"  type="submit" >Add</button>
+</form>

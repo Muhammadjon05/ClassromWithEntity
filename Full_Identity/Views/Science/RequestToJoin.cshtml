@@ -1,0 +1,14 @@
+﻿@model Full_Identity.DTOs.CreateRequestToJoin
+
+@{
+    ViewData["Title"] = "Send Join Science Request";
+}
+
+<h1 style="margin: auto; text-align: center">Send Join Science Request</h1>
+<form class="row g-3" style="width: 400px; margin: auto"  asp-action="RequestToJoin" asp-route-Id="@ViewBag.Id" method="post">
+    <div>
+        <input name="Username" class="form-control" asp-for="Username" type="text" placeholder="Username" />
+        <span class="text-danger" asp-validation-for="Username"></span>
+    </div>
+    <button class="form-control" type="submit">Send join request</button>
+</form>

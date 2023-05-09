@@ -1,0 +1,33 @@
+﻿@using IdentityData.Enums
+@model IdentityData.Entities.Science 
+<partial name="UpdateScience12" />
+
+<a class="btn btn-primary" asp-action="RequestToJoin" asp-controller="Science" asp-route-Id="@(Model.Id)">Send Request to Join</a>
+
+<a class="btn btn-primary" asp-controller="Task" asp-action="Index" asp-route-scienceId="@Model.Id">Tasks</a>
+
+<table class="table">
+    <thead>
+    <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Description</th>
+        <th scope="col">Role</th>
+    </tr>
+    </thead>
+    <tbody>
+    @{
+        int i = 0;
+    }
+    @foreach (var model in Model.UserSciences!)
+    {
+        i++;
+        <tr>
+            <th scope="row">@(i)</th>
+            <td>@(model.User.FirstName)</td>
+            <td>@(model.User.LastName)</td>
+            <td>@(model.Type)</td>
+        </tr>
+    }
+    </tbody>
+</table>

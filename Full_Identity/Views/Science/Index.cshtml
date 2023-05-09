@@ -1,0 +1,35 @@
+﻿@using IdentityData.AppDbContext
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@using Full_Identity.Helper
+@using Microsoft.EntityFrameworkCore
+@model IdentityData.Entities.School
+@inject Context Context
+@inject UserProvider UserProvider  
+<a class="btn btn-primary" asp-action="CreateScience" asp-controller="Science" asp-route-Id="@Model.Id">Create</a>
+<table class="table">
+    <thead>
+    <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Description</th>
+        <th scope="col">Number of Sciences </th>
+    </tr>
+    </thead>
+    <tbody>
+    @{
+        int i = 0;
+    }
+    @foreach (var model in Model.Sciences)
+    {
+        i++;
+        <tr>
+            <th scope="row">@(i)</th>
+            <td>@(model.Name)</td>
+            <td>@(model.Description)</td>
+            <td>
+                <a class="btn btn-primary" asp-action="GetScienceById" asp-route-id="@(model.Id)">View</a>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>

@@ -1,0 +1,61 @@
+﻿@using IdentityData.Enums
+@using Full_Identity.Helper
+@model IdentityData.Entities.School
+@inject UserProvider UserProvider
+<h1> School Name: @Model.Name</h1>
+<h1> School Description: @Model.Description</h1>
+<h1>Creator: @Model.UserSchools.First(user=> user.Status ==UserStatus.Creator).User.FirstName</h1>
+<a class="btn btn-primary" asp-controller="Science" asp-action="Index" asp-route-Id="@Model.Id" >Sciences</a>
+<partial name="JoinClass" />
+<partial name="UpdateSchoolLink" />
+<h3>School</h3>
+<table class="table">
+    <thead>
+    <tr>
+        <th scope="col">#</th>
+        <th scope="col">FirstName</th>
+        <th scope="col">LastName</th>
+        <th scope="col">Number of Users</th>
+    </tr>
+    </thead>
+    <tbody>
+    @{
+        int i = 0;
+    }
+               @{
+                   var userId = Model.UserSchools.FirstOrDefault(i => i.UserId == UserProvider.UserId);
+               }
+    
+    @foreach (var model in Model.UserSchools)
+    {
+        i++;
+        <tr>
+            <th scope="row">@(i)</th>
+            <td>@(model.User.FirstName)</td>
+            <td>@(model.User.LastName)</td>
+            @{
+                if ((model.UserId != UserProvider.UserId && model.Status != UserStatus.Creator )&&  (userId.Status == UserStatus.Admin || userId.Status == UserStatus.Creator))
+                {     <td>
+                          <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+                              <div class="btn-group" role="group"></div>
+                              <button type="button" class="btn btn-primary dropdown dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                  @(model.Status)
+                              </button>
+                              <div class="dropdown-menu">
+                                  <li> <a class="dropdown-item" asp-controller="School" asp-action="UpdateRole" asp-route-userId="@(model.UserId)" asp-route-schoolId="@(model.SchoolId)" asp-route-status="@UserStatus.Admin"  >Admin</a></li>
+                                  <li> <a class="dropdown-item" asp-controller="School" asp-action="UpdateRole" asp-route-userId="@(model.UserId)" asp-route-schoolId="@(model.SchoolId)" asp-route-status="@UserStatus.Teacher" >Teacher</a></li>
+                                  <li> <a class="dropdown-item" asp-controller="School" asp-action="UpdateRole" asp-route-userId="@(model.UserId)" asp-route-schoolId="@(model.SchoolId)" asp-route-status="@UserStatus.Student" >Student</a></li>
+                              </div>
+                          </div>  
+                      </td>
+                }
+                else
+                {
+                    <td>@(model.Status)</td>
+                }
+            }
+            
+        </tr>
+    }
+    </tbody>
+</table>

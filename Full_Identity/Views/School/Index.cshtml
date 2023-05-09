@@ -1,0 +1,33 @@
+﻿@model List<IdentityData.Entities.School>
+
+
+<h1>List of Schools</h1>
+
+<table class="table">
+    <thead>
+    <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Description</th>
+        <th scope="col">Number of Users</th>
+    </tr>
+    </thead>
+    <tbody>
+    @{
+        int i = 0;
+    }
+    @foreach (var model in Model)
+    {
+        i++;
+        <tr>
+            <th scope="row">@(i)</th>
+            <td>@(model.Name)</td>
+            <td>@(model.Description)</td>
+            <td>@(model.UserSchools.Count)</td>
+            <td>
+                <a class="btn btn-primary" asp-action="GetSchoolById" asp-route-id="@(model.Id)">View</a>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>

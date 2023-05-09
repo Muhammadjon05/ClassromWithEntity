@@ -1,0 +1,12 @@
+﻿
+@using Full_Identity.Helper
+@using IdentityData.Enums
+@model IdentityData.Entities.Science
+@inject UserProvider UserProvider
+@{
+    
+        <a class="btn btn-primary" asp-controller="Science" asp-action="UpdateScience"
+            asp-route-Id="@Model.Id"
+           >Update</a>
+
+}

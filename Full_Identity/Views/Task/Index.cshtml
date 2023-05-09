@@ -1,0 +1,41 @@
+﻿@model List<IdentityData.Entities.TaskEntity>
+
+<a class="btn btn-primary" asp-controller="Task" asp-action="AddTask" asp-route-scienceId="@ViewBag.ScienceId"> Add Task</a>
+<h1>Tasks</h1>
+<table class="table">
+    <thead>
+    <tr>
+        <th scope="col">#</th>
+        <th scope="col">Title</th>
+        <th scope="col">Description</th>
+        <th scope="col">Status</th> 
+        <th scope="col">StartDate</th>
+        <th scope="col">EndDate</th>
+        <th scope="col">CreatedDate</th> 
+        <th scope="col">MaxBall</th> 
+        <th scope="col">Action</th> 
+    </tr>
+    </thead>
+    <tbody>
+    @{
+        int i = 0;
+    }
+    @foreach (var model in Model)
+    {
+        i++;
+        <tr>
+            <th scope="row">@(i)</th>
+            <td>@(model.Title)</td>
+            <td>@(model.Description)</td>
+            <td>@(model.Status)</td>
+            <td>@(model.StartDate)</td>
+            <td>@(model.EndDate)</td>
+            <td>@(model.CreatedDate)</td>
+            <td>@(model.MaxBall)</td>
+            <td>
+                <a  class="btn btn-primary" asp-action="GetById" asp-route-taskId="@(model.Id)">View</a>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>

@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Full_Identity", "Full_Identity\Full_Identity.csproj", "{63225CEF-47CC-44E3-9F7E-A5374F627826}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdentityData", "IdentityData\IdentityData.csproj", "{085634D4-9B89-465B-8005-1802820127D0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{63225CEF-47CC-44E3-9F7E-A5374F627826}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{63225CEF-47CC-44E3-9F7E-A5374F627826}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{63225CEF-47CC-44E3-9F7E-A5374F627826}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{63225CEF-47CC-44E3-9F7E-A5374F627826}.Release|Any CPU.Build.0 = Release|Any CPU
+		{085634D4-9B89-465B-8005-1802820127D0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{085634D4-9B89-465B-8005-1802820127D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{085634D4-9B89-465B-8005-1802820127D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{085634D4-9B89-465B-8005-1802820127D0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

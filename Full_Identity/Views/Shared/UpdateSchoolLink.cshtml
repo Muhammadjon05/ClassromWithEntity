@@ -1,0 +1,16 @@
+﻿
+@using Full_Identity.Helper
+@using IdentityData.Enums
+@model IdentityData.Entities.School
+@inject UserProvider UserProvider
+@{
+    if (@Model.UserSchools.Any(s => s.User.Id == UserProvider.UserId &&
+                                    (s.Status == UserStatus.Creator||
+                                     s.Status==UserStatus.Admin)))
+    {
+        <a class="btn btn-primary" asp-controller="School" asp-action="UpdateSchool"
+            asp-route-Id="@Model.Id"
+           >Update</a>
+    }
+    
+}

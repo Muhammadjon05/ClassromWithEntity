@@ -1,0 +1,18 @@
+﻿@model Full_Identity.DTOs.UpdateScienceDTO
+
+
+<h1>Update school</h1>
+<form class="row g-3" style="width: 400px" asp-controller="Science" 
+      asp-action="UpdateScience" 
+      asp-route-Id="@ViewBag.Id"
+      enctype="multipart/form-data" method="post">
+    <div>
+        <input  name="Name" class="form-control" asp-for="Name" type="text" placeholder="Name"/>
+        <span asp-validation-for="Name"></span>
+    </div>
+    <div>
+        <input  name="Description" class="form-control" asp-for="Description" type="text" placeholder="Description"/>
+        <span asp-validation-for="Description"></span>
+    </div>
+    <button class="form-control"  type="submit" >Add</button>
+</form>

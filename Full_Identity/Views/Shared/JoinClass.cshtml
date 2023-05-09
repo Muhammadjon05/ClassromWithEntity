@@ -1,0 +1,14 @@
+﻿@using Full_Identity.Helper
+@model IdentityData.Entities.School
+@inject UserProvider UserProvider
+
+@{
+    var userId = UserProvider.UserId;
+    var userCheck = Model.UserSchools.Any(i => i.User.Id == userId);
+
+    if (!userCheck)
+    {
+        <a class="btn btn-primary" asp-action="JoinSchool" asp-route-id="@Model.Id">Join</a>
+    }
+    
+}
